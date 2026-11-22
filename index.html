@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>esmeta: ECMAScript仕様書を読む機械</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<style>
+  :root {
+    --r-main-font: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --r-heading-font: var(--r-main-font);
+    --r-main-font-size: 30px;
+    --r-heading-text-transform: none;
+    --r-link-color: #0b62c4;
+    --r-link-color-hover: #084a94;
+    --accent: #a8324a;
+    --muted: #6a737d;
+    --quote-bg: #f6f8fa;
+    --quote-border: #d0d7de;
+  }
+  .reveal .slides { text-align: left; }
+  .reveal .slides section.center { text-align: center; }
+  .reveal pre { width: 100%; font-size: 0.6em; box-shadow: none; }
+  .reveal pre code { max-height: none; padding: 0.6em 0.8em; background: var(--quote-bg); border: 1px solid var(--quote-border); border-radius: 6px; }
+  .reveal blockquote { width: auto; margin: 0.6em 0; padding: 0.4em 0.8em; font-style: normal; font-size: 0.8em; background: var(--quote-bg); border-left: 6px solid var(--quote-border); box-shadow: none; }
+  .reveal small, .reveal .muted { color: var(--muted); }
+  .reveal small { font-size: 0.5em; }
+  .reveal .accent { color: var(--accent); font-weight: bold; }
+  .reveal .icon { border-radius: 50%; }
+  .reveal h2 { font-size: 1.3em; margin-bottom: 0.5em; }
+  .reveal .spec { margin: 0.6em 0; padding: 0.5em 0.9em; font-size: 0.75em; background: var(--quote-bg); border: 1px solid var(--quote-border); border-radius: 6px; }
+  .reveal .spec ol { display: block; margin: 0 0 0 1.4em; padding: 0; }
+  .reveal .spec p { margin: 0.4em 0 0; }
+  .reveal .spec .aoh { font-weight: bold; margin: 0 0 0.3em; }
+  .reveal var { font-style: italic; }
+  .reveal section.dense { font-size: 0.85em; }
+  .reveal section.dense p { margin: 0.4em 0; }
+  .reveal section.title h1 { margin-bottom: 1.2em; font-size: 2.2em; }
+  .reveal section.title .byline { font-size: 0.8em; line-height: 1.6; }
+  .reveal pre.mermaid { font-size: 20px; line-height: 1.2; background: none; border: none; text-align: center; box-shadow: none; }
+  .reveal table { font-size: 0.7em; margin: 0.4em 0; }
+  .reveal table th, .reveal table td { padding: 0.25em 0.6em; border-bottom: 1px solid var(--quote-border); }
+  .reveal td.num, .reveal th.num { text-align: right; }
+  .reveal svg.chart { width: 100%; height: auto; }
+  .reveal mark { color: inherit; background: linear-gradient(transparent 55%, #ffe066 55%); padding: 0 0.1em; }
+  .reveal .rendered { margin: 0.5em 0; padding: 0.6em 1em; font-family: "IBM Plex Serif", Cambria, "Times New Roman", serif; font-size: 0.7em; line-height: 1.5; color: #111; background: #fff; border: 1px solid var(--quote-border); border-radius: 6px; }
+  .reveal .rendered p { margin: 0 0 0.5em; }
+  .reveal .rendered .rh { font-size: 1.3em; font-weight: bold; }
+  .reveal .rendered .secnum { margin-right: 0.6em; }
+  .reveal .rendered var { color: #218379; font-style: italic; }
+  .reveal .rendered var.field { color: inherit; font-style: normal; }
+  .reveal .rendered a { color: #206ca7; }
+  .reveal .rendered ol { margin: 0 0 0 1.6em; }
+  .reveal .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6em; align-items: start; }
+  .reveal .cols .spec, .reveal .cols pre { margin: 0; }
+  .reveal .cols .spec { font-size: 0.6em; }
+  .reveal .cols pre { font-size: 0.5em; }
+  .reveal section.quiz pre { font-size: 1.4em; }
+  .reveal section.quiz .answer { font-size: 1.6em; }
+  .reveal .balloon { position: relative; display: inline-block; margin-top: 0.4em; padding: 0.3em 0.8em; font-size: 0.75em; color: #24292f; background: #fff8c5; border: 1px solid #d4a72c; border-radius: 10px; }
+  .reveal .balloon::before { content: ""; position: absolute; top: -9px; left: 50%; margin-left: -8px; border: 8px solid transparent; border-top: 0; border-bottom-color: #d4a72c; }
+  .reveal .balloon::after { content: ""; position: absolute; top: -7px; left: 50%; margin-left: -7px; border: 7px solid transparent; border-top: 0; border-bottom-color: #fff8c5; }
+  .reveal svg.chart .grid { stroke: #e3e6ea; stroke-width: 1; }
+  .reveal svg.chart .ytick { font-size: 16px; fill: var(--muted); text-anchor: end; }
+  .reveal svg.chart .xtick { font-size: 16px; fill: var(--muted); text-anchor: middle; }
+  .reveal svg.chart .line { fill: none; stroke: var(--accent); stroke-width: 3; }
+  .reveal svg.chart .dot { fill: var(--accent); stroke: #fff; stroke-width: 2; }
+  .reveal svg.chart .note { font-size: 18px; fill: #24292f; }
+  .reveal svg.chart .ptitle { font-size: 18px; fill: var(--muted); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- S1 -->
+<section class="center title">
+<h1>esmeta:<br>ECMAScript仕様書を読む機械</h1>
+<p class="byline">yebis0942<br><span class="muted">JSConf JP 2026 · 2026-11-22</span></p>
+<aside class="notes">
+<ul>
+<li>自己紹介をする。</li>
+<li>JavaScript の仕様書をプログラムとして型検査している話をします。</li>
+</ul>
+</aside>
+</section>
+
+<!-- 自己紹介 -->
+<section class="center">
+<h2>自己紹介</h2>
+<p><img class="icon" src="https://github.com/yebis0942.png" alt="yebis0942のアイコン" width="160" height="160"></p>
+<p><strong>yebis0942</strong></p>
+<p>所属: <a href="https://cloud.hello.ai/">HelloCloud</a></p>
+<p><span class="balloon">2Fにブース出してます</span></p>
+<p><a href="https://esspec.connpass.com/">ECMAScript仕様書輪読会</a> に参加しています</p>
+<p><a class="balloon" href="https://esspec.connpass.com/event/412769/">次回は11/24（火） 19:30〜</a></p>
+</section>
+
+<!-- S2 -->
+<section class="quiz">
+<h2>クイズ</h2>
+<p>これはエラーになる？</p>
+<pre><code class="language-javascript" data-trim>
+[].map(42)
+</code></pre>
+<p class="muted">空の配列なので、callback は一度も呼ばれない</p>
+<p class="fragment answer"><span class="accent">TypeError</span></p>
+<aside class="notes">
+<ul>
+<li>エラーになると思う人に手を挙げてもらう。</li>
+<li>答えは TypeError。理由は仕様書に書かれている。</li>
+</ul>
+</aside>
+</section>
+
+<!-- S3 -->
+<section>
+<h2>Array.prototype.map</h2>
+<div class="spec">
+<p class="aoh">Array.prototype.map ( <var>callback</var> [ , <var>thisArg</var> ] )</p>
+<ol>
+<li>Let <var>O</var> be ? ToObject(<b>this</b> value).</li>
+<li>Let <var>len</var> be ? LengthOfArrayLike(<var>O</var>).</li>
+<li><span class="accent">If IsCallable(<var>callback</var>) is <b>false</b>, throw a <b>TypeError</b> exception.</span></li>
+<li>…</li>
+</ol>
+</div>
+<ul>
+<li>要素を処理するループ（ステップ6）より前に、ステップ3で callback を確認している</li>
+<li>エンジンはこの手順をほぼそのまま実装している</li>
+</ul>
+<p><small>es2026 の文面 / <a href="https://tc39.es/ecma262/#sec-array.prototype.map">sec-array.prototype.map</a></small></p>
+</section>
+
+<!-- S4 -->
+<section>
+<h2>IsCallable</h2>
+<div class="spec">
+<p class="aoh">IsCallable ( <var>argument</var>: <span class="accent">an ECMAScript language value</span> ): <span class="accent">a Boolean</span></p>
+<ol>
+<li>If <var>argument</var> is not an Object, return <b>false</b>.</li>
+<li>If <var>argument</var> has a [[Call]] internal method, return <b>true</b>.</li>
+<li>Return <b>false</b>.</li>
+</ol>
+</div>
+<ul>
+<li>見出しに引数と戻り値の型が書かれている</li>
+<li>本文は英語だが、使われる言い回しはほぼ決まっている</li>
+</ul>
+<p><small>es2026 の文面 / <a href="https://tc39.es/ecma262/#sec-iscallable">sec-iscallable</a></small></p>
+<aside class="notes">
+<ul>
+<li>見出しの型を型検査で使う。</li>
+<li>S3 の <code>?</code> は「abrupt completion ならそのまま返す」という意味。</li>
+<li>この2点があるので機械的に解析できる。</li>
+</ul>
+</aside>
+</section>
+
+<!-- S5 -->
+<section>
+<p><strong>ESMeta</strong>: 仕様書から解析・実行できるプログラムを生成するツール</p>
+<pre class="mermaid">
+flowchart LR
+  A[spec.html] -- 抽出 --> B[AST]
+  B -- 変換 --> C[IR]
+  C --> D["型検査"]
+  C --> E["インタプリタ<br>（Test262 の実行）"]
+  C --> G["polyfill 生成"]
+  A -- 文法定義 --> F["JS パーサー"]
+</pre>
+<ul>
+<li>韓国の研究グループが中心になって開発している</li>
+</ul>
+<p><small>経緯は <a href="https://doi.org/10.1145/3624723">「JavaScript Language Design and Implementation in Tandem」</a>（Communications of the ACM, 2024）を参照</small></p>
+<p><small><a href="https://github.com/es-meta/esmeta">es-meta/esmeta</a> / IR: Intermediate Representation（中間表現）</small></p>
+</section>
+
+<!-- S5c 型検査 -->
+<section>
+<h2>型検査</h2>
+<ul>
+<li>仕様書に書かれた型の宣言と、手順の中身が食い違っていないかを調べる</li>
+<li>tc39/ecma262 の CI で PR ごとに実行している（2022-11〜）</li>
+</ul>
+<p><small><a href="https://github.com/tc39/ecma262/blob/main/.github/workflows/esmeta-typecheck.yml">esmeta-typecheck.yml</a></small></p>
+</section>
+
+<!-- S5a インタプリタ -->
+<section>
+<h2>インタプリタ</h2>
+<ul>
+<li>仕様書の手順をそのまま実行する JavaScript インタプリタ</li>
+<li><a href="https://github.com/tc39/test262">Test262</a>（公式のテストスイート）を実行して、仕様書の誤りを見つける</li>
+<li>例: <a href="https://github.com/tc39/ecma262/pull/2700">#2700</a></li>
+<li>tc39/test262 の CI では、追加・変更されたテストを ESMeta で実行している（2022-11〜）</li>
+</ul>
+<p><small><a href="https://github.com/tc39/test262/blob/main/.github/workflows/esmeta-test262.yml">esmeta-test262.yml</a></small></p>
+<aside class="notes">
+<ul>
+<li>#2700（2022-03、h2oche）: Number::multiply の手順では <code>-0 * +0</code> が <code>+0</code> になっていた（正しくは <code>-0</code>）。</li>
+<li>ESMeta で Test262 の <code>S11.5.1_A4_T2.js</code> を実行したら失敗して見つかった。</li>
+</ul>
+</aside>
+</section>
+
+<!-- S5b polyfill -->
+<section class="dense">
+<h2>polyfill 生成</h2>
+<div class="cols">
+<div class="spec">
+<p class="aoh">String.prototype.at ( <var>index</var> )</p>
+<ol>
+<li>Let <var>O</var> be the <b>this</b> value.</li>
+<li>Perform ? RequireObjectCoercible(<var>O</var>).</li>
+<li>Let <var>S</var> be ? ToString(<var>O</var>).</li>
+<li>Let <var>len</var> be the length of <var>S</var>.</li>
+<li>Let <var>relativeIndex</var> be ? ToIntegerOrInfinity(<var>index</var>).</li>
+<li>If <var>relativeIndex</var> ≥ 0, then
+<ol><li>Let <var>k</var> be <var>relativeIndex</var>.</li></ol></li>
+<li>Else,
+<ol><li>Let <var>k</var> be <var>len</var> + <var>relativeIndex</var>.</li></ol></li>
+<li>If <var>k</var> &lt; 0 or <var>k</var> ≥ <var>len</var>, return <b>undefined</b>.</li>
+<li>Return the substring of <var>S</var> from <var>k</var> to <var>k</var> + 1.</li>
+</ol>
+</div>
+<pre><code class="language-javascript" data-trim>
+at(index) {
+  var O = this;
+  AO__RequireObjectCoercible(O);
+  var S = AO__ToString(O);
+  var len = S.length;
+  var relativeIndex = AO__ToIntegerOrInfinity(index);
+  if ((relativeIndex &gt;= 0))
+  {
+    var k = relativeIndex;
+  }
+  else
+  {
+    var k = (len + relativeIndex);
+  }
+  if (((k &lt; 0) || (k &gt;= len)))
+  {
+    return undefined;
+  }
+  return IN__SubString(S, k, (k + 1));
+}
+</code></pre>
+</div>
+<ul>
+<li>組み込み関数の手順を JavaScript に翻訳する</li>
+</ul>
+<p><small><code>esmeta gen-poly</code> の出力（抜粋） / <a href="https://github.com/es-meta/esmeta/pull/390">es-meta/esmeta#390</a>（v0.8.2 で追加） / MiniPoly（<a href="https://doi.org/10.1145/3832783.3837549">ASE 2026</a>）</small></p>
+</section>
+
+<!-- 区切り -->
+<section class="center">
+<h1>ここからは型検査の話</h1>
+</section>
+
+<!-- S6 -->
+<section>
+<h2>Algorithm Step のパース</h2>
+<div class="rendered">
+<p class="rh"><span class="secnum">7.2.3</span> IsCallable ( <var>argument</var> )</p>
+<p>The abstract operation IsCallable takes argument <var>argument</var> (an <a href="https://tc39.es/ecma262/#sec-ecmascript-language-types">ECMAScript language value</a>) and returns a Boolean. It determines if <var>argument</var> is a callable function with a <var class="field">[[Call]]</var> internal method. It performs the following steps when called:</p>
+<ol>
+<li>If <var>argument</var> <a href="https://tc39.es/ecma262/#sec-object-type">is not an Object</a>, return <b>false</b>.</li>
+<li>If <var>argument</var> has a <var class="field">[[Call]]</var> internal method, return <b>true</b>.</li>
+<li>Return <b>false</b>.</li>
+</ol>
+</div>
+<ul>
+<li><code>emu-clause</code>（節）、<code>h1</code>（見出し）、<code>emu-alg</code>（手順）、<code>emu-grammar</code>（文法）を読み取る</li>
+<li>番号付きリストの入れ子がステップの木構造になる</li>
+</ul>
+<p><small>es2026 のレンダリング結果 / <a href="https://tc39.es/ecma262/2026/#sec-iscallable">sec-iscallable</a></small></p>
+</section>
+
+<!-- S7 -->
+<section class="dense">
+<h2>パーサー</h2>
+<div class="spec"><ol>
+<li>Let <var>len</var> be ? LengthOfArrayLike(<var>O</var>).</li>
+</ol></div>
+<p class="muted">パーサーの定義（Scala）</p>
+<pre><code class="language-scala" data-trim>
+lazy val letStep: PL[LetStep] =
+  ("let" ~&gt; variable &lt;~ "be") ~ endWithExpr ^^ {
+    case x ~ (e, f) =&gt; f(LetStep(x, e))
+  }
+</code></pre>
+<p class="muted">結果の AST</p>
+<pre><code class="language-scala" data-trim>
+LetStep(
+  Variable("len"),
+  ReturnIfAbruptExpression(
+    InvokeAbstractOperationExpression("LengthOfArrayLike",
+      List(ReferenceExpression(Variable("O"))))))
+</code></pre>
+<p>「Let <var>x</var> be <var>式</var>.」という言い回しをパーサーコンビネーターで定義している</p>
+<p><small>ESMeta の出力を一部省略 / <a href="https://github.com/es-meta/esmeta/blob/e7f40a8742725884f3bdb31ad17bd70efedfa71f/src/main/scala/esmeta/lang/util/Parser.scala#L111-L114">lang/util/Parser.scala#L111-L114</a></small></p>
+</section>
+
+<!-- S8 -->
+<section>
+<h2>IR</h2>
+<pre><code class="language-scala" data-trim>
+def IsCallable(
+  argument: ESValue,
+): Boolean = {
+  if (! (? argument: Record[Object])) {
+    return false
+  }
+  if (exists argument.Call) {
+    return true
+  }
+  return false
+}
+</code></pre>
+<ul>
+<li>見出しの型が IR の型注釈（<code>ESValue</code>、<code>Boolean</code>）になる</li>
+<li>仕様書の3ステップと1対1で対応している</li>
+</ul>
+<p><small><code>esmeta compile</code> の出力</small></p>
+</section>
+
+<!-- S9 -->
+<section>
+<h2>CFG</h2>
+<pre class="mermaid">
+flowchart LR
+  A([entry]) --> B{"argument は Object?"}
+  B -- No --> R1([return false])
+  B -- Yes --> C{"argument.Call がある?"}
+  C -- Yes --> R2([return true])
+  C -- No --> R3([return false])
+</pre>
+<p>IR を制御フローグラフに変換し、静的解析の対象にする</p>
+<p><small class="muted">CFG: Control Flow Graph（制御フローグラフ）</small></p>
+</section>
+
+<!-- S10 -->
+<section>
+<h2>型検査</h2>
+<table>
+<tr><th>宣言（見出し）</th><td><code>IsCallable(argument: ESValue): Boolean</code></td></tr>
+<tr><th>解析結果</th><td><code>return false / true / false</code> → <code>Boolean</code> ✓</td></tr>
+</table>
+<ul>
+<li>CFGをたどって各変数がとりうる型を計算する</li>
+<li>宣言と解析結果が合わなければエラーにする
+<ul>
+<li>戻り値の型の不一致</li>
+<li>存在しないフィールドへのアクセス</li>
+<li>引数の型の不一致</li>
+</ul>
+</li>
+<li>Record の型（PropertyDescriptor など）は手書きの型定義を使う</li>
+</ul>
+</section>
+
+<!-- S11 -->
+<section class="dense">
+<h2>検出されたエラーの例: Atomics.add</h2>
+<div class="spec">
+<p class="aoh">Atomics.add ( <var>typedArray</var>, <var>index</var>, <var>value</var> )（2024年11月まで）</p>
+<ol>
+<li><span class="accent">Let <var>type</var> be TypedArrayElementType(<var>typedArray</var>).</span></li>
+<li>Let <var>isLittleEndian</var> be …</li>
+<li>Let <var>add</var> be a new read-modify-write modification function … that captures <var>type</var> and <var>isLittleEndian</var> …</li>
+<li>Return ? AtomicReadModifyWrite(<var>typedArray</var>, <var>index</var>, <var>value</var>, <var>add</var>).</li>
+</ol>
+</div>
+<ul>
+<li>TypedArray かどうかの確認（ステップ4）より前に要素の型を取得している</li>
+<li><code>Atomics.add({}, 0, 1)</code> → 正しくは TypeError</li>
+</ul>
+<pre><code class="language-plaintext" data-trim>
+[ParamTypeMismatch] ... from INTRINSICS.Atomics.add (step 1) to TypedArrayElementType
+- expected: Record[TypedArray]
+- actual  : ESValue
+</code></pre>
+<p><small>2020-03 <a href="https://github.com/tc39/ecma262/pull/1907">#1907</a> で混入 → 2023-07 <a href="https://github.com/tc39/ecma262/issues/3117">#3117</a> で報告（anba）→ 2024-11-21 ESMeta v0.5.0 で検出 → 2024-11-26 <a href="https://github.com/tc39/ecma262/pull/3499">#3499</a> で修正（syg）</small></p>
+<aside class="notes">
+<ul>
+<li>手順どおりに実装すると、普通のオブジェクトにない [[TypedArrayName]] を読むことになる。</li>
+<li>修正では、型の取得をクロージャの中に移した。</li>
+<li>#3499 のレビューで syg が「型検査が通らないのはなぜ？」と聞き、bakkot が「型エラーを直したので無視リストから消す必要がある」と答えている。</li>
+<li>ESMeta の出力は、es2026 にこの誤りを入れ直して v0.8.2 で実行したもの。</li>
+</ul>
+</aside>
+</section>
+
+<!-- S12 -->
+<section>
+<h2>yet: パースできない文</h2>
+<div class="spec"><ol>
+<li>Return <span class="accent">the the</span> JSONArrayLiteralContentNodes of |ElementList|.</li>
+</ol></div>
+<pre><code class="language-scala" data-trim>
+yet "Return the the JSONArrayLiteralContentNodes of |ElementList|."
+</code></pre>
+<ul>
+<li>パースできない部分は原文のまま IR に残す。ESMeta ではこれを <mark>yet</mark> と呼ぶ</li>
+<li>yet の先は型検査されない</li>
+<li>es2026 では492か所（ステップ全体 344、条件式だけ 140、その他 8）</li>
+<li>新しい言い回しだけでなく、誤字でもパースできない文になる</li>
+</ul>
+<p><small>「the」の重複は <a href="https://github.com/tc39/ecma262/pull/3714">#3714</a>（2026-03-31）で入り、<a href="https://github.com/tc39/ecma262/pull/3797">#3797</a>（2026-04-04）で修正</small></p>
+</section>
+
+<!-- S13 -->
+<section>
+<h2>esmeta-ignore.json と yet の件数</h2>
+<svg class="chart" viewBox="0 0 1000 470" role="img" aria-label="esmeta-ignore.json の件数とパースできないステップ数の推移">
+<line x1="163.0" x2="163.0" y1="30" y2="430" class="grid"/><text x="163.0" y="456" class="xtick">2023</text>
+<line x1="367.2" x2="367.2" y1="30" y2="430" class="grid"/><text x="367.2" y="456" class="xtick">2024</text>
+<line x1="572.0" x2="572.0" y1="30" y2="430" class="grid"/><text x="572.0" y="456" class="xtick">2025</text>
+<line x1="776.3" x2="776.3" y1="30" y2="430" class="grid"/><text x="776.3" y="456" class="xtick">2026</text>
+<text x="60" y="30" class="ptitle">esmeta-ignore.json の件数（型エラーが残るアルゴリズム）</text>
+<line x1="60" x2="980" y1="210.0" y2="210.0" class="grid"/><text x="52" y="215.0" class="ytick">0</text>
+<line x1="60" x2="980" y1="125.0" y2="125.0" class="grid"/><text x="52" y="130.0" class="ytick">30</text>
+<line x1="60" x2="980" y1="40.0" y2="40.0" class="grid"/><text x="52" y="45.0" class="ytick">60</text>
+<path d="M129.4,65.5H130.0V71.2H145.1V54.2H177.5V57.0H192.6V54.2H243.0V57.0H250.8V59.8H255.3V57.0H321.9V62.7H344.8V74.0H372.3V82.5H446.7V88.2H521.7V85.3H525.6V85.3H534.0V88.2H549.1V139.2H551.9V144.8H564.2V164.7H579.9V173.2H580.4V178.8H583.8V181.7H598.9V167.5H670.5V164.7H748.9V178.8H905.6V176.0H921.8V164.7H940.8V167.5H946.4V161.8H952.6V173.2H958.2" class="line"/>
+<circle cx="129.4" cy="65.5" r="5" class="dot"/><text x="137.4" y="91.5" text-anchor="start" class="note">導入 51</text>
+<circle cx="549.1" cy="88.2" r="5" class="dot"/><text x="549.1" y="74.2" text-anchor="middle" class="note">v0.5.0</text>
+<circle cx="583.8" cy="181.7" r="5" class="dot"/><text x="583.8" y="205.7" text-anchor="middle" class="note">10</text>
+<circle cx="952.6" cy="173.2" r="5" class="dot"/><text x="952.6" y="201.2" text-anchor="middle" class="note">13</text>
+<text x="60" y="260" class="ptitle">パースが完全でないステップ数（ESMeta が対応する版）</text>
+<line x1="60" x2="980" y1="430.0" y2="430.0" class="grid"/><text x="52" y="435.0" class="ytick">0</text>
+<line x1="60" x2="980" y1="350.0" y2="350.0" class="grid"/><text x="52" y="355.0" class="ytick">500</text>
+<line x1="60" x2="980" y1="270.0" y2="270.0" class="grid"/><text x="52" y="275.0" class="ytick">1000</text>
+<path d="M88.0,304.4H89.7V305.8H90.8V307.6H91.3V309.4H99.7V311.9H102.0V318.0H141.7V318.0H144.5V318.6H152.3V318.6H152.9V319.0H157.4V318.8H168.0V319.3H281.6V314.3H288.9V319.3H368.3V321.5H371.7V324.1H376.2V324.2H376.7V325.5H387.4V329.2H388.5V329.4H389.1V329.4H389.6V329.4H394.1V329.8H473.0V328.6H537.9V328.6H672.8V324.7H678.4V324.7H683.4V306.3H692.4V303.1H694.6V303.1H708.0V306.0H739.4V306.8H741.0V313.8H759.5V315.1H900.0V309.0H907.8V310.3H908.4V312.2H908.9V312.6H910.0V314.2H941.4V315.4H947.5V316.9H957.6V316.9H958.2" class="line"/>
+<circle cx="88.0" cy="304.4" r="5" class="dot"/><text x="96.0" y="290.4" text-anchor="start" class="note">785</text>
+<circle cx="957.6" cy="316.9" r="5" class="dot"/><text x="957.6" y="302.9" text-anchor="middle" class="note">707</text>
+</svg>
+<p><small>上: <a href="https://github.com/tc39/ecma262/commits/main/esmeta-ignore.json">esmeta-ignore.json の履歴</a> / 下: ESMeta の <a href="https://github.com/es-meta/esmeta/commits/main/src/main/resources/result/spec-summary">spec-summary</a> の履歴（es2022 〜 es2026）</small></p>
+</section>
+
+<!-- S14 -->
+<section>
+<h2>2022年11月: CI に導入</h2>
+<ul>
+<li>2022-11-02 <a href="https://github.com/tc39/ecma262/pull/2926">#2926</a> で型検査を CI に追加</li>
+<li>導入時点で型エラーがあったアルゴリズムは無視リストに入れた（51件）</li>
+<li>新しく型エラーを増やす PR は CI が失敗する</li>
+<li>翌日の #2937 で 49件</li>
+<li>同じ月に ESMeta v0.1.0 へ更新して 55件</li>
+</ul>
+<p class="muted">件数は型エラーが残っているアルゴリズムの数で、エラー自体の数ではない</p>
+</section>
+
+<!-- S15 -->
+<section>
+<h2>2023 〜 2024年秋</h2>
+<p>55 → 54 → 53 → … → 45 → 43（約2年）</p>
+<ul>
+<li>少しずつ減った</li>
+<li>例: <a href="https://github.com/tc39/ecma262/pull/3163">#3163</a>（completion の判定の書き方を変更）で 48 → 45</li>
+<li>新機能の追加や書き換えで増えたこともある</li>
+</ul>
+</section>
+
+<!-- S16 -->
+<section>
+<h2>2024-11: ESMeta v0.5.0</h2>
+<p><a href="https://github.com/tc39/ecma262/pull/3487">#3487</a> Meta: Upgrade ESMeta to v0.5.0　39 → 26</p>
+<table>
+<tr><td>ESMeta 側の変更で出なくなった</td><td class="num">34件</td></tr>
+<tr><td>新しく出た</td><td class="num">21件</td></tr>
+<tr><td>名前の付け方が変わっただけ</td><td class="num">2件</td></tr>
+</table>
+<ul>
+<li>新しく出た21件のうち14件は、その後の仕様書の修正で消えた</li>
+<li>このころから、本当にエラーが検出できるようになりはじめた</li>
+</ul>
+</section>
+
+<!-- S17 -->
+<section class="dense">
+<h2>2024-11 〜 2025-01: 修正</h2>
+<p>26 → 10（仕様書の修正 PR 11本で 14件、ESMeta v0.5.1 で 2件）</p>
+<table>
+<tr><td><a href="https://github.com/tc39/ecma262/pull/3499">#3499</a></td><td>Atomics.add / sub（S11 の例）</td><td>型の取得をクロージャの中へ</td></tr>
+<tr><td><a href="https://github.com/tc39/ecma262/pull/3484">#3484</a></td><td>GetModuleNamespace は empty を返さない</td><td>戻り値の型から外す</td></tr>
+<tr><td><a href="https://github.com/tc39/ecma262/pull/3496">#3496</a></td><td>GetFunctionRealm の proxyTarget は関数</td><td>Assert を追加</td></tr>
+</table>
+<ul>
+<li>修正の方法
+<ul>
+<li>手順の誤りを直す</li>
+<li>型の宣言を実態に合わせる</li>
+<li>Assert を追加して解析器に型を伝える</li>
+</ul>
+</li>
+<li>11本のうち8本は ESMeta の開発者（kimjg1119）が出している</li>
+<li>2022年からの累計では、仕様書の修正 PR 19本で無視リストから34件が消えた</li>
+</ul>
+<p><small>追跡用 issue: <a href="https://github.com/tc39/ecma262/issues/3486">tc39/ecma262#3486</a></small></p>
+</section>
+
+<!-- S18 -->
+<section>
+<h2>新機能の追加と yet-check</h2>
+<ul>
+<li>2025-02 <a href="https://github.com/tc39/ecma262/pull/3057">#3057</a> Import Attributes　10 → 15
+<ul><li>新機能が入ると件数が増えることがある</li></ul>
+</li>
+<li>2025-12 <a href="https://github.com/tc39/ecma262/pull/3721">#3721</a> yet-check を追加
+<ul><li>PR で増えたパースできない文を警告する</li></ul>
+</li>
+</ul>
+</section>
+
+<!-- S19 -->
+<section class="dense">
+<h2>現在</h2>
+<p><a href="https://github.com/tc39/ecma262/pull/4073">#4073</a> Meta: Upgrade ESMeta to v0.8.2（2026-11-12）→ 13件</p>
+<table>
+<tr><th>原因</th><th class="num">件数</th></tr>
+<tr><td>数値の範囲や変数どうしの関係を追えない</td><td class="num">6</td></tr>
+<tr><td>完了の種類を絞り込めない（Break / Continue が混ざる）</td><td class="num">4</td></tr>
+<tr><td>オブジェクトや Record の種類を絞り込めない</td><td class="num">2</td></tr>
+<tr><td>戻り値が Promise ではなく Throw と判定される</td><td class="num">1</td></tr>
+</table>
+<ul>
+<li>ESMeta チームは、残りは ESMeta 側の誤検出だとしている</li>
+<li>2025年1月以降は 10 〜 17件の間を推移している</li>
+</ul>
+<p><small>ESMeta 6383da10 を無視リストなしで main（74c33d4）に実行した結果（エラー23件、13関数） / <a href="https://github.com/tc39/ecma262/issues/3486">#3486</a></small></p>
+</section>
+
+<!-- S20 -->
+<section>
+<p><strong>まとめ</strong></p>
+<ul>
+<li>ECMAScript の仕様書は<mark>型検査できる</mark></li>
+<li>CI 導入から4年で無視リストは <mark>51 → 13件</mark></li>
+<li>2025年12月からは<mark>パースできない文</mark>も PR で検出している</li>
+</ul>
+</section>
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/highlight/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.15.0/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: false, theme: 'neutral', fontFamily: getComputedStyle(document.documentElement).getPropertyValue('--r-main-font'), htmlLabels: false, themeVariables: { fontSize: '20px' }, flowchart: { htmlLabels: false } });
+  Reveal.on('ready', () => mermaid.run({ querySelector: '.mermaid' }));
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    viewDistance: 30,
+    plugins: [RevealHighlight, RevealNotes],
+  });
+</script>
+</body>
+</html>

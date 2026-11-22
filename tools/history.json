@@ -1,0 +1,624 @@
+[
+ {
+  "hash": "a6197454",
+  "date": "2022-11-02",
+  "subject": "Meta: integrate esmeta type checker into CI (#2926)",
+  "before": 0,
+  "after": 51,
+  "removed": [],
+  "added": [
+   "AddEntriesFromIterable",
+   "AsyncGeneratorBody[0,0].EvaluateAsyncGeneratorBody",
+   "BoundFunctionCreate",
+   "Catch[1,0].CatchClauseEvaluation",
+   "ClassElement[0,0].ClassElementEvaluation",
+   "ClassElement[1,0].ClassElementEvaluation",
+   "ClassStaticBlockBody[0,0].EvaluateClassStaticBlockBody",
+   "CreateArrayIterator",
+   "CreateBuiltinFunction",
+   "CreateDynamicFunction",
+   "CreateMappedArgumentsObject",
+   "DeclarativeEnvironmentRecord.InitializeBinding",
+   "DeclarativeEnvironmentRecord.SetMutableBinding",
+   "FlattenIntoArray",
+   "FunctionBody[0,0].EvaluateFunctionBody",
+   "GeneratorBody[0,0].EvaluateGeneratorBody",
+   "GeneratorResumeAbrupt",
+   "GeneratorValidate",
+   "GetGlobalObject",
+   "GetMethod",
+   "GetNewTarget",
+   "GetPromiseResolve",
+   "GetPrototypeFromConstructor",
+   "GetThisValue",
+   "INTRINSICS.DefaultTimeZone",
+   "InnerModuleEvaluation",
+   "IntegerIndexedObjectCreate",
+   "LabelledItem[1,0].LabelledEvaluation",
+   "LengthOfArrayLike",
+   "MethodDefinition[0,0].DefineMethod",
+   "ModuleNamespaceCreate",
+   "NewPromiseReactionJob",
+   "NormalCompletion",
+   "OrdinaryGet",
+   "PrivateGet",
+   "ProxyCreate",
+   "SerializeJSONObject",
+   "SetDefaultGlobalBindings",
+   "SetViewValue",
+   "SortIndexedProperties",
+   "SourceTextModuleRecord.ResolveExport",
+   "SpeciesConstructor",
+   "Statement[0,0].LabelledEvaluation",
+   "Statement[1,0].LabelledEvaluation",
+   "Statement[2,0].LabelledEvaluation",
+   "StringCreate",
+   "TemplateString",
+   "ToBigInt64",
+   "ToBigUint64",
+   "ToUint32",
+   "WeakRefDeref"
+  ]
+ },
+ {
+  "hash": "d1c41cb6",
+  "date": "2022-11-03",
+  "subject": "Editorial: Fix ClassElementEvaluation's return type (#2937)",
+  "before": 51,
+  "after": 49,
+  "removed": [
+   "ClassElement[0,0].ClassElementEvaluation",
+   "ClassElement[1,0].ClassElementEvaluation"
+  ],
+  "added": []
+ },
+ {
+  "hash": "ee74c9cb",
+  "date": "2022-11-30",
+  "subject": "Meta: upgrade esmeta to v0.1.0 (#2966)",
+  "before": 49,
+  "after": 55,
+  "removed": [
+   "CreateDynamicFunction",
+   "CreateMappedArgumentsObject",
+   "DeclarativeEnvironmentRecord.InitializeBinding",
+   "DeclarativeEnvironmentRecord.SetMutableBinding",
+   "GeneratorResumeAbrupt",
+   "GetNewTarget",
+   "NewPromiseReactionJob",
+   "NormalCompletion",
+   "OrdinaryGet",
+   "PrivateGet",
+   "SetViewValue",
+   "TemplateString",
+   "ToBigInt64",
+   "ToBigUint64",
+   "ToUint32",
+   "WeakRefDeref"
+  ],
+  "added": [
+   "ArrayAssignmentPattern[0,0].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[0,1].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[0,2].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[0,3].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[1,0].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[2,0].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[2,1].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[2,2].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[2,3].DestructuringAssignmentEvaluation",
+   "ArrayCreate",
+   "AsyncGeneratorUnwrapYieldResumption",
+   "BindingPattern[1,0].BindingInitialization",
+   "Catch[0,0].CatchClauseEvaluation",
+   "CreateIterResultObject",
+   "ECMAScriptFunctionObject.Call",
+   "ECMAScriptFunctionObject.Construct",
+   "ForIn/OfBodyEvaluation",
+   "HostEnqueuePromiseJob",
+   "ModuleNamespaceExoticObject.OwnPropertyKeys",
+   "OrdinaryObject.OwnPropertyKeys",
+   "SetFunctionLength",
+   "SourceTextModuleRecord.ExecuteModule"
+  ]
+ },
+ {
+  "hash": "f1fbcc56",
+  "date": "2023-01-27",
+  "subject": "Editorial: various editorial changes for comparisons (#2877)",
+  "before": 55,
+  "after": 54,
+  "removed": [
+   "GeneratorValidate"
+  ],
+  "added": []
+ },
+ {
+  "hash": "a623bfb9",
+  "date": "2023-02-23",
+  "subject": "Editorial: Factor out FindViaPredicate (#2898)",
+  "before": 54,
+  "after": 55,
+  "removed": [],
+  "added": [
+   "FindViaPredicate"
+  ]
+ },
+ {
+  "hash": "055116da",
+  "date": "2023-05-24",
+  "subject": "Meta: upgrade esmeta to v0.3.0 (#3069)",
+  "before": 55,
+  "after": 54,
+  "removed": [
+   "HostEnqueuePromiseJob"
+  ],
+  "added": []
+ },
+ {
+  "hash": "73926a53",
+  "date": "2023-06-07",
+  "subject": "Editorial: refactor time zone identifier spec text (#3035)",
+  "before": 54,
+  "after": 53,
+  "removed": [
+   "INTRINSICS.DefaultTimeZone"
+  ],
+  "added": []
+ },
+ {
+  "hash": "2e2cba54",
+  "date": "2023-06-15",
+  "subject": "Editorial: take ToString and ToLength out of StringPad and make it infallible (#3066)",
+  "before": 53,
+  "after": 54,
+  "removed": [],
+  "added": [
+   "StringPad"
+  ]
+ },
+ {
+  "hash": "a9ae96ed",
+  "date": "2023-10-12",
+  "subject": "Normative: Add resizable ArrayBuffer and growable SharedArrayBuffer (#3116)",
+  "before": 54,
+  "after": 52,
+  "removed": [
+   "CreateArrayIterator",
+   "FindViaPredicate",
+   "SortIndexedProperties"
+  ],
+  "added": [
+   "MakeIntegerIndexedObjectWithBufferWitnessRecord"
+  ]
+ },
+ {
+  "hash": "8912120d",
+  "date": "2023-11-22",
+  "subject": "Meta: Upgrade ESMeta to v0.3.3 (#3219)",
+  "before": 52,
+  "after": 50,
+  "removed": [
+   "GetPrototypeFromConstructor",
+   "SetDefaultGlobalBindings"
+  ],
+  "added": []
+ },
+ {
+  "hash": "03e44104",
+  "date": "2023-11-22",
+  "subject": "Editorial: Rename \"Integer-Indexed exotic object\" as \"TypedArray\" (#3194)",
+  "before": 50,
+  "after": 48,
+  "removed": [
+   "IntegerIndexedObjectCreate",
+   "MakeIntegerIndexedObjectWithBufferWitnessRecord"
+  ],
+  "added": []
+ },
+ {
+  "hash": "c7560a59",
+  "date": "2024-01-10",
+  "subject": "Editorial: Use \"is a foo completion\" instead of testing [[Type]] field (#3163)",
+  "before": 48,
+  "after": 45,
+  "removed": [
+   "AsyncGeneratorUnwrapYieldResumption",
+   "CreateIterResultObject",
+   "ECMAScriptFunctionObject.Call",
+   "ECMAScriptFunctionObject.Construct"
+  ],
+  "added": [
+   "ScriptEvaluation"
+  ]
+ },
+ {
+  "hash": "246b8fa2",
+  "date": "2024-05-22",
+  "subject": "Meta: Upgrade ESMeta to v0.4.1 (#3325)",
+  "before": 45,
+  "after": 43,
+  "removed": [
+   "FlattenIntoArray",
+   "ModuleNamespaceExoticObject.OwnPropertyKeys",
+   "OrdinaryObject.OwnPropertyKeys",
+   "SetFunctionLength",
+   "StringPad"
+  ],
+  "added": [
+   "CreateMappedArgumentsObject",
+   "CreateSharedByteDataBlock",
+   "OrdinaryFunctionCreate"
+  ]
+ },
+ {
+  "hash": "aada4084",
+  "date": "2024-10-03",
+  "subject": "Editorial: OrdinaryCreateFromConstructor has wrong parameter type (#3287)",
+  "before": 43,
+  "after": 44,
+  "removed": [],
+  "added": [
+   "OrdinaryCreateFromConstructor"
+  ]
+ },
+ {
+  "hash": "6b4217b0",
+  "date": "2024-10-10",
+  "subject": "Meta: Upgrade ESMeta to v0.4.3 (#3444)",
+  "before": 44,
+  "after": 44,
+  "removed": [
+   "OrdinaryCreateFromConstructor"
+  ],
+  "added": [
+   "TypedArrayCreateFromConstructor"
+  ]
+ },
+ {
+  "hash": "8657afd3",
+  "date": "2024-10-25",
+  "subject": "Meta: remove `LengthOfArrayLike` from esmeta-ignore.json",
+  "before": 44,
+  "after": 43,
+  "removed": [
+   "LengthOfArrayLike"
+  ],
+  "added": []
+ },
+ {
+  "hash": "35af9094",
+  "date": "2024-11-21",
+  "subject": "Editorial: Fixed return types of algorithms returning ~empty~ (#2924)",
+  "before": 43,
+  "after": 39,
+  "removed": [
+   "Catch[0,0].CatchClauseEvaluation",
+   "Catch[1,0].CatchClauseEvaluation",
+   "LabelledItem[1,0].LabelledEvaluation",
+   "Statement[0,0].LabelledEvaluation",
+   "Statement[1,0].LabelledEvaluation",
+   "Statement[2,0].LabelledEvaluation"
+  ],
+  "added": [
+   "ConciseBody[0,0].EvaluateConciseBody",
+   "Initializer[0,0].EvaluateBody"
+  ]
+ },
+ {
+  "hash": "ddd73607",
+  "date": "2024-11-21",
+  "subject": "Meta: Upgrade ESMeta to v0.5.0 (#3487)",
+  "before": 39,
+  "after": 26,
+  "removed": [
+   "AddEntriesFromIterable",
+   "ArrayAssignmentPattern[0,0].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[0,1].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[0,2].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[0,3].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[1,0].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[2,0].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[2,1].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[2,2].DestructuringAssignmentEvaluation",
+   "ArrayAssignmentPattern[2,3].DestructuringAssignmentEvaluation",
+   "ArrayCreate",
+   "AsyncGeneratorBody[0,0].EvaluateAsyncGeneratorBody",
+   "BindingPattern[1,0].BindingInitialization",
+   "BoundFunctionCreate",
+   "ConciseBody[0,0].EvaluateConciseBody",
+   "CreateBuiltinFunction",
+   "CreateMappedArgumentsObject",
+   "CreateSharedByteDataBlock",
+   "ForIn/OfBodyEvaluation",
+   "GeneratorBody[0,0].EvaluateGeneratorBody",
+   "GetMethod",
+   "GetPromiseResolve",
+   "GetThisValue",
+   "Initializer[0,0].EvaluateBody",
+   "InnerModuleEvaluation",
+   "MethodDefinition[0,0].DefineMethod",
+   "ModuleNamespaceCreate",
+   "OrdinaryFunctionCreate",
+   "ProxyCreate",
+   "ScriptEvaluation",
+   "SerializeJSONObject",
+   "SourceTextModuleRecord.ExecuteModule",
+   "SourceTextModuleRecord.ResolveExport",
+   "SpeciesConstructor",
+   "StringCreate",
+   "TypedArrayCreateFromConstructor"
+  ],
+  "added": [
+   "AsyncFromSyncIteratorContinuation",
+   "AsyncGeneratorYield",
+   "CompareTypedArrayElements",
+   "CreateAsyncIteratorFromClosure",
+   "DoWait",
+   "GetFunctionRealm",
+   "GetViewByteLength",
+   "INTRINSICS.Atomics.add",
+   "INTRINSICS.Atomics.notify",
+   "INTRINSICS.Atomics.sub",
+   "InstallErrorCause",
+   "MakeMatchIndicesIndexPairArray",
+   "Record[BuiltinFunctionObject].Construct",
+   "Record[ModuleNamespaceExoticObject].Get",
+   "Record[SourceTextModuleRecord].ExecuteModule",
+   "Record[SourceTextModuleRecord].InitializeEnvironment",
+   "Record[SourceTextModuleRecord].ResolveExport",
+   "RelationalExpression[7,0].Evaluation",
+   "SuperCall[0,0].Evaluation",
+   "TypedArrayGetElement",
+   "TypedArrayLength",
+   "TypedArraySetElement",
+   "YieldExpression[2,0].Evaluation"
+  ]
+ },
+ {
+  "hash": "cf5938e6",
+  "date": "2024-11-21",
+  "subject": "Editorial: Add an assertion for privateEnv (#3485)",
+  "before": 26,
+  "after": 25,
+  "removed": [
+   "RelationalExpression[7,0].Evaluation"
+  ],
+  "added": []
+ },
+ {
+  "hash": "3e6f71c9",
+  "date": "2024-11-26",
+  "subject": "Editorial: Move getting the TA type inside the RMW function (#3499)",
+  "before": 25,
+  "after": 23,
+  "removed": [
+   "INTRINSICS.Atomics.add",
+   "INTRINSICS.Atomics.sub"
+  ],
+  "added": []
+ },
+ {
+  "hash": "effe5f6d",
+  "date": "2024-12-18",
+  "subject": "Meta: Upgrade ESMeta to v0.5.1 (#3508)",
+  "before": 23,
+  "after": 21,
+  "removed": [
+   "GetGlobalObject",
+   "InstallErrorCause"
+  ],
+  "added": []
+ },
+ {
+  "hash": "38f68d78",
+  "date": "2024-12-18",
+  "subject": "Editorial: Add assertion for built-in function object (#3483)",
+  "before": 21,
+  "after": 20,
+  "removed": [
+   "Record[BuiltinFunctionObject].Construct"
+  ],
+  "added": []
+ },
+ {
+  "hash": "6298ee18",
+  "date": "2024-12-18",
+  "subject": "Editorial: Remove empty from GetModuleNamespace (#3484)",
+  "before": 20,
+  "after": 18,
+  "removed": [
+   "Record[ModuleNamespaceExoticObject].Get",
+   "Record[SourceTextModuleRecord].InitializeEnvironment"
+  ],
+  "added": []
+ },
+ {
+  "hash": "b2a5b677",
+  "date": "2024-12-18",
+  "subject": "Editorial: use suspended-start instead of undefined in AsyncGeneratorState (#3494)",
+  "before": 18,
+  "after": 17,
+  "removed": [
+   "CreateAsyncIteratorFromClosure"
+  ],
+  "added": []
+ },
+ {
+  "hash": "c4042979",
+  "date": "2024-12-18",
+  "subject": "Editorial: ProxyTarget is always a function object in GetFunctionRealm (#3496)",
+  "before": 17,
+  "after": 16,
+  "removed": [
+   "GetFunctionRealm"
+  ],
+  "added": []
+ },
+ {
+  "hash": "519149d7",
+  "date": "2025-01-15",
+  "subject": "Editorial: Narrowing an assertion in SuperCall: super Arguments (#3466)",
+  "before": 16,
+  "after": 15,
+  "removed": [
+   "SuperCall[0,0].Evaluation"
+  ],
+  "added": []
+ },
+ {
+  "hash": "e645d2c8",
+  "date": "2025-01-15",
+  "subject": "Editorial: Add [[ImportName]] assertion for non-direct binding cases in ResolveExports (#3488)",
+  "before": 15,
+  "after": 14,
+  "removed": [
+   "Record[SourceTextModuleRecord].ResolveExport"
+  ],
+  "added": []
+ },
+ {
+  "hash": "1f6ac07c",
+  "date": "2025-01-15",
+  "subject": "Editorial: Allocate-and-use in MakeMatchIndicesIndexPairArray for refinement (#3495)",
+  "before": 14,
+  "after": 13,
+  "removed": [
+   "MakeMatchIndicesIndexPairArray"
+  ],
+  "added": []
+ },
+ {
+  "hash": "0d1e2a8e",
+  "date": "2025-01-16",
+  "subject": "Editorial: Consolidate static bounds checking in IsValidIntegerIndex and StringGetOwnProperty (#3523)",
+  "before": 13,
+  "after": 11,
+  "removed": [
+   "TypedArrayGetElement",
+   "TypedArraySetElement"
+  ],
+  "added": []
+ },
+ {
+  "hash": "df1c3cca",
+  "date": "2025-01-22",
+  "subject": "Editorial: Add assertion that generatorKind is not non-generator (#3379)",
+  "before": 11,
+  "after": 10,
+  "removed": [
+   "YieldExpression[2,0].Evaluation"
+  ],
+  "added": []
+ },
+ {
+  "hash": "4e3450e3",
+  "date": "2025-02-18",
+  "subject": "Normative: Add Import Attributes proposal (#3057)",
+  "before": 10,
+  "after": 15,
+  "removed": [],
+  "added": [
+   "EvaluateImportCall",
+   "FinishLoadingImportedModule",
+   "Record[SourceTextModuleRecord].GetExportedNames",
+   "Record[SourceTextModuleRecord].InitializeEnvironment",
+   "Record[SourceTextModuleRecord].ResolveExport"
+  ]
+ },
+ {
+  "hash": "48cab845",
+  "date": "2025-06-26",
+  "subject": "Editorial: FunctionDeclarationInstantiation cannot return ReturnCompletion (#3607)",
+  "before": 15,
+  "after": 16,
+  "removed": [],
+  "added": [
+   "FunctionDeclarationInstantiation"
+  ]
+ },
+ {
+  "hash": "74d6f30f",
+  "date": "2025-11-13",
+  "subject": "Meta: Upgrade ESMeta to v0.7.1 (#3720)",
+  "before": 16,
+  "after": 11,
+  "removed": [
+   "FinishLoadingImportedModule",
+   "INTRINSICS.Atomics.notify",
+   "Record[SourceTextModuleRecord].GetExportedNames",
+   "Record[SourceTextModuleRecord].InitializeEnvironment",
+   "Record[SourceTextModuleRecord].ResolveExport"
+  ],
+  "added": []
+ },
+ {
+  "hash": "ad0ccf5e",
+  "date": "2026-08-20",
+  "subject": "Editorial: Add SnapToInteger to handle finite-only integer conversion (#3946)",
+  "before": 11,
+  "after": 12,
+  "removed": [],
+  "added": [
+   "SnapToInteger"
+  ]
+ },
+ {
+  "hash": "bc237bbb",
+  "date": "2026-09-18",
+  "subject": "Meta: Upgrade ESMeta to v0.8.0 (#3962)",
+  "before": 12,
+  "after": 16,
+  "removed": [
+   "SnapToInteger"
+  ],
+  "added": [
+   "BigIntBitwiseOp",
+   "DecimalEscape[0,1].CapturingGroupNumber",
+   "IncrementModuleAsyncEvaluationCount",
+   "TimeString",
+   "TimeZoneString"
+  ]
+ },
+ {
+  "hash": "02f2b1fa",
+  "date": "2026-10-22",
+  "subject": "Editorial: Align BigIntBitwiseOp with {NumberBitwiseOp,ByteListBitwiseOp} (#3987)",
+  "before": 16,
+  "after": 15,
+  "removed": [
+   "BigIntBitwiseOp"
+  ],
+  "added": []
+ },
+ {
+  "hash": "4ad14cf8",
+  "date": "2026-11-01",
+  "subject": "Layering: use an enum for the compilation type (#3998)",
+  "before": 15,
+  "after": 17,
+  "removed": [],
+  "added": [
+   "CreateDynamicFunction",
+   "PerformEval"
+  ]
+ },
+ {
+  "hash": "cf279adb",
+  "date": "2026-11-12",
+  "subject": "Meta: Upgrade ESMeta to v0.8.2 (#4073)",
+  "before": 17,
+  "after": 13,
+  "removed": [
+   "CreateDynamicFunction",
+   "DecimalEscape[0,1].CapturingGroupNumber",
+   "IncrementModuleAsyncEvaluationCount",
+   "PerformEval",
+   "TimeString",
+   "TimeZoneString"
+  ],
+  "added": [
+   "LocalTime",
+   "MakeFullYear"
+  ]
+ }
+]
